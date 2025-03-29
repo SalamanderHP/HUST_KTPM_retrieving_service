@@ -1,0 +1,22 @@
+{
+  "apps": [
+      {
+          "name": "DOTA2-scan-service",
+          "script": "src/services/dota2.js",
+          "max_memory_restart": "500M",
+          "watch": false
+      },
+      {
+          "name": "LOL-scan-service",
+          "script": "src/services/lol.js",
+          "max_memory_restart": "500M",
+          "watch": false
+      },
+      {
+          "name": "TFT-scan-service",
+          "script": "src/services/tft.js",
+          "max_memory_restart": "500M",
+          "watch": false
+      }
+  ]
+}
