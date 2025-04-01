@@ -61,39 +61,7 @@ const get = async (
   return await getInstance.get(url);
 };
 
-const post = async (url, body, authen = false, repeat = 3) => {
-  instance.interceptors.request.use(
-    function (req) {
-      req.time = {startTime: new Date()};
-      if (authen) {
-        req.headers["Authorization"] = "Bearer " + API_AUTH_KEY;
-      }
-      return req;
-    },
-    (err) => {
-      console.log(err);
-      return Promise.reject(err);
-    }
-  );
-
-  instance.interceptors.response.use(
-    async (res) => {
-      res.config.time[`endTime`] = new Date();
-      res.duration = res.config.time.endTime - res.config.time.startTime;
-
-      return res;
-    },
-    async (err) => {
-      console.log(err);
-      return Promise.reject(err);
-    }
-  );
-
-  return await instance.post(url, body);
-};
-
 module.exports = {
   get,
-  post,
   InstanceType,
 };
