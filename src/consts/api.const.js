@@ -1,9 +1,12 @@
 const OPEN_DOTA_KEY = process.env.DOTA_SECRET;
 const STEAM_POWER_DOTA_KEY = "535A126E7157974063C0EBE436E335D8";
-const API_AUTH_KEY = "";
+const LOL_ROUTING = {
+  host: "https://vn2.api.riotgames.com/",
+  platformId: "VN2",
+};
 
 module.exports = {
   OPEN_DOTA_KEY,
   STEAM_POWER_DOTA_KEY,
-  API_AUTH_KEY,
+  LOL_ROUTING
 };
