@@ -1,6 +1,12 @@
-const CronJob = require('cron').CronJob;
+const {
+  getLolMatchDetails,
+  getLolUserMatches,
+  getLolAccountInfo,
+} = require("../configs/lol/lol.api");
 
-const job = new CronJob('*/30 * * * * *', async function () {
+const CronJob = require("cron").CronJob;
+
+const job = new CronJob("*/30 * * * * *", async function () {
   console.log("lol service loaded");
 });
 
