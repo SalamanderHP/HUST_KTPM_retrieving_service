@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/SalamanderHP/HUST_KTPM_processing_service#readme",
   "dependencies": {
+    "@google-cloud/pubsub": "^4.11.0",
     "axios": "^1.8.4",
     "cors": "^2.8.5",
     "cron": "^4.1.3",

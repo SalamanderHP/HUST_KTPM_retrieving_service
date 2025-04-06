@@ -26,7 +26,10 @@ const mockGameData = async () => {
   console.log("Game data created");
 };
 
+const mockGameAccountData = () => {};
+
 module.exports = {
   mockUserData,
   mockGameData,
+  mockGameAccountData,
 };

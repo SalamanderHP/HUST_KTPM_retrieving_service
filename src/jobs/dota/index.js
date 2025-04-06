@@ -8,9 +8,45 @@ require("dotenv").config();
  */
 const db = require("../../configs/db/mongo/index");
 db.connect();
+/**
+ * --------------------- PUBSUB ----------------------
+ */
+const {PubSub} = require("@google-cloud/pubsub");
+const pubSubClient = new PubSub({
+  projectId: PUBSUB_PROJECT_ID,
+  keyFilename: `./keys/${process.env.GOOGLE_APPLICATION_CREDENTIALS}`,
+});
+
+/**
+ * --------------------- INIT ----------------------
+ */
+const {
+  DOTA2_TOPIC_NAME,
+  PUBSUB_PROJECT_ID,
+} = require("../../consts/pubsub.const");
+
+const data = JSON.stringify({foo: "bar"});
 
 const job = new CronJob("*/30 * * * * *", async function () {
-  console.log("dota2 service loaded");
+  console.log("DOTA2 scan start!!!");
+  const dataBuffer = Buffer.from(data);
+
+  const customAttributes = {
+    origin: "nodejs-sample",
+    username: "gcp",
+  };
+
+  const topic = pubSubClient.topic(DOTA2_TOPIC_NAME);
+
+  try {
+    const messageId = await topic.publishMessage({
+      data: dataBuffer,
+      attributes: customAttributes,
+    });
+    console.log(`Message ${messageId} published.`);
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 job.start();

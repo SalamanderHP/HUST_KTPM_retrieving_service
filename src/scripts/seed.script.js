@@ -17,5 +17,9 @@ const seedingUsersAndGames = () => {
   mockGameData();
 };
 
-db.connect();
-seedingUsersAndGames();
+const seed = async () => {
+  await db.connect();
+  seedingUsersAndGames();
+};
+
+seed();
