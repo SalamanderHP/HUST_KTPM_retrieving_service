@@ -1,5 +1,3 @@
-require("dotenv").config();
-
 const OPEN_DOTA_KEY = process.env.DOTA_SECRET;
 const LOL_API_KEY = process.env.LOL_API_KEY;
 const STEAM_POWER_DOTA_KEY = "535A126E7157974063C0EBE436E335D8";

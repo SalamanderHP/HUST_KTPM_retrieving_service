@@ -2,19 +2,7 @@
     "apps": [
         {
             "name": "DOTA2-scan-service",
-            "script": "src/jobs/dota2.job.js",
-            "max_memory_restart": "500M",
-            "watch": false
-        },
-        {
-            "name": "LOL-scan-service",
-            "script": "src/jobs/lol.job.js",
-            "max_memory_restart": "500M",
-            "watch": false
-        },
-        {
-            "name": "TFT-scan-service",
-            "script": "src/jobs/tft.job.js",
+            "script": "src/jobs/dota/index.js",
             "max_memory_restart": "500M",
             "watch": false
         }
