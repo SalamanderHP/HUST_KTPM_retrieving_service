@@ -84,7 +84,18 @@ const GAME_MOCK_DATA = [
   },
 ];
 
+const DOTA2_USER_DATA = [
+  {ingame: "SR.skem", ingame_id: "100594231"},
+  {ingame: "@SaintsMike", ingame_id: "215308703"},
+  {ingame: "XG.Paparazi灬", ingame_id: "137193239"},
+  {ingame: "MARIONETTE SPELLS", ingame_id: "905263867"},
+  {ingame: "kiss of death", ingame_id: "341923347"},
+  {ingame: "PARIVISION.Satanic", ingame_id: "1044002267"},
+  {ingame: "Aurora.23", ingame_id: "375507918"},
+];
+
 module.exports = {
   USER_MOCK_DATA,
   GAME_MOCK_DATA,
+  DOTA2_USER_DATA,
 };
