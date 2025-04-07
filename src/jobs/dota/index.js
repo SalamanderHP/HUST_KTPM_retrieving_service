@@ -4,6 +4,13 @@ const CronJob = require("cron").CronJob;
  */
 require("dotenv").config();
 /**
+ * --------------------- INIT ----------------------
+ */
+const {
+  DOTA2_TOPIC_NAME,
+  PUBSUB_PROJECT_ID,
+} = require("../../consts/pubsub.const");
+/**
  *  ----------------------- DB CONFIG -----------------------------
  */
 const db = require("../../configs/db/mongo/index");
@@ -16,14 +23,6 @@ const pubSubClient = new PubSub({
   projectId: PUBSUB_PROJECT_ID,
   keyFilename: `./keys/${process.env.GOOGLE_APPLICATION_CREDENTIALS}`,
 });
-
-/**
- * --------------------- INIT ----------------------
- */
-const {
-  DOTA2_TOPIC_NAME,
-  PUBSUB_PROJECT_ID,
-} = require("../../consts/pubsub.const");
 
 const data = JSON.stringify({foo: "bar"});
 
