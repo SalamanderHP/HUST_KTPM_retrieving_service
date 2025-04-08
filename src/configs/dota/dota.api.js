@@ -36,17 +36,17 @@ const getPlayerDetailOpenDota = async (accountId) => {
 };
 
 // https://api.opendota.com/api/players/1271872417/matches
-const getPlayerMatches = async (accountId) => {
+const getPlayerMatches = async (accountId, limit = 20) => {
   try {
     if (!accountId) {
       return null;
     }
 
     let url = OPEN_DOTA_KEY
-      ? `players/${accountId}/matches?api_key=${OPEN_DOTA_KEY}`
+      ? `players/${accountId}/matches?api_key=${OPEN_DOTA_KEY}&limit=${limit}`
       : `players/${accountId}/matches`;
     let result = await get(url, false, InstanceType.OPEN_DOTA);
-    return result;
+    return result?.data;
   } catch (error) {
     throw error;
   }
