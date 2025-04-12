@@ -36,7 +36,7 @@ const getPlayerDetailOpenDota = async (accountId) => {
 };
 
 // https://api.opendota.com/api/players/1271872417/matches
-const getPlayerMatches = async (accountId, limit = 20) => {
+const getPlayerMatches = async (accountId, limit = 10) => {
   try {
     if (!accountId) {
       return null;

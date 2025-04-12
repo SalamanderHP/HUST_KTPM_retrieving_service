@@ -78,8 +78,8 @@ const job = new CronJob("*/10 * * * * *", async function () {
       // publish to queue
       await publishMessage(DOTA2_TOPIC_NAME, accountMatches, {
         ingame: gameAccount.ingame,
-        user: gameAccount.user,
-        game: gameAccount.game,
+        user: JSON.stringify(gameAccount.user),
+        game: JSON.stringify(gameAccount.game),
       });
     }
   } catch (error) {
