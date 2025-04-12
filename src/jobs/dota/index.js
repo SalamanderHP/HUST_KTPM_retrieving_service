@@ -6,6 +6,7 @@ const {publishMessage} = require("../../configs/pubsub");
 const {ENTITY_CONST} = require("../../consts/entities.const");
 const {DOTA2_TOPIC_NAME} = require("../../consts/pubsub.const");
 const game_accountsEntity = require("../../entities/game_accounts.entity");
+const matchesEntity = require("../../entities/matches.entity");
 db.connect();
 
 const getDota2GameAccounts = async () => {
@@ -73,14 +74,30 @@ const job = new CronJob("*/10 * * * * *", async function () {
     for (let index = 0; index < activeGameAccounts.length; index++) {
       const gameAccount = activeGameAccounts[index];
       let accountMatches = await getPlayerMatches(gameAccount.ingame_id);
-      console.log(accountMatches);
+      if (!accountMatches) continue;
 
-      // publish to queue
-      await publishMessage(DOTA2_TOPIC_NAME, accountMatches, {
-        ingame: gameAccount.ingame,
-        user: JSON.stringify(gameAccount.user),
-        game: JSON.stringify(gameAccount.game),
-      });
+      for (let i = 0; i < accountMatches.length; i++) {
+        const match = accountMatches[i];
+        let existingMatch = await matchesEntity.findOne({
+          match_id: match.match_id,
+          game_account: gameAccount._id,
+          game: gameAccount.game._id,
+        });
+        if (existingMatch) continue;
+
+        // publish to queue
+        await publishMessage(
+          DOTA2_TOPIC_NAME,
+          {
+            match_info: match,
+            ingame: gameAccount.ingame,
+            game_account: gameAccount._id,
+          },
+          {
+            from: "dota2 retriever",
+          }
+        );
+      }
     }
   } catch (error) {
     console.log("ERROR:", error);
