@@ -5,6 +5,12 @@
             "script": "src/jobs/dota/index.js",
             "max_memory_restart": "500M",
             "watch": false
+        },
+        {
+            "name": "LOL-scan-service",
+            "script": "src/jobs/lol/index.js",
+            "max_memory_restart": "500M",
+            "watch": false
         }
     ]
 }

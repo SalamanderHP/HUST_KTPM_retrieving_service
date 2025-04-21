@@ -73,7 +73,7 @@ const getDota2Game = async () => {
   return data;
 };
 
-const job = new CronJob("*/10 * * * * *", async function () {
+const job = new CronJob("*/30 * * * * *", async function () {
   console.log("DOTA2 scan start!!!");
   try {
     let dota2Game = await getDota2Game();

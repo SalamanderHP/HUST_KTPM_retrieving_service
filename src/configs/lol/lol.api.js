@@ -14,7 +14,6 @@ const getLolUserMatches = async (puuid) => {
     let url = `/lol/match/v5/matches/by-puuid/${puuid}/ids?start=0&count=20`;
     // let result = await get(url);
     let result = generateLolMatchData(5);
-    console.log(result, 111);
     return result;
   } catch (error) {
     throw error;
