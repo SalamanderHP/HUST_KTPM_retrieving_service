@@ -11,7 +11,7 @@ const Match = require("../../entities/matches.entity");
 const ObjectId = require("mongodb").ObjectId;
 db.connect();
 
-const getDota2GameAccounts = async (game) => {
+const getLolGameAccounts = async (game) => {
   let data = await GameAccounts.aggregate([
     {
       $match: {
@@ -79,7 +79,7 @@ const job = new CronJob("*/30 * * * * *", async function () {
   console.log("LOL scan start!!!");
   try {
     let lolGame = await getLolGame();
-    let activeGameAccounts = await getDota2GameAccounts(lolGame);
+    let activeGameAccounts = await getLolGameAccounts(lolGame);
     if (!activeGameAccounts) return;
 
     for (let index = 0; index < activeGameAccounts.length; index++) {
