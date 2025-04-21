@@ -14,6 +14,10 @@ const ENTITY_CONST = {
       CHESS: "chess",
       MOBA: "moba",
     },
+    NAME: {
+      DOTA2: "dota2",
+      LEAGUE_OF_LEGENDS: "leagueoflegends",
+    },
   },
 };
 

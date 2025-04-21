@@ -5,6 +5,7 @@ const {
   USER_MOCK_DATA,
   GAME_MOCK_DATA,
   DOTA2_USER_DATA,
+  LOL_USER_DATA,
 } = require("./data/seed");
 
 const mockUserData = async () => {
@@ -51,11 +52,35 @@ const seedDotaGameAccountData = async () => {
     };
     await GameAccount.create(gameAccountData);
   }
-  console.log("Game account created");
+  console.log("Dota game account created");
+};
+
+const seedLolGameAccountData = async () => {
+  let users = await User.find({}).limit(10);
+  let lol = await Game.findOne({name: "leagueoflegends"});
+  for (let index = 0; index < LOL_USER_DATA.length; index++) {
+    const data = LOL_USER_DATA[index];
+    const user = users[index];
+    let existingGameAccount = await GameAccount.findOne({
+      game: lol._id,
+      user: user._id,
+    });
+    if (existingGameAccount) continue;
+
+    let gameAccountData = {
+      ingame: data.ingame,
+      ingame_id: data.ingame_id,
+      user: user,
+      game: lol,
+    };
+    await GameAccount.create(gameAccountData);
+  }
+  console.log("Lol game account created");
 };
 
 module.exports = {
   mockUserData,
   mockGameData,
   seedDotaGameAccountData,
+  seedLolGameAccountData,
 };

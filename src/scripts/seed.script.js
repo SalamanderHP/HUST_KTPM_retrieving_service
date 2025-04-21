@@ -11,6 +11,7 @@ const {
   mockUserData,
   mockGameData,
   seedDotaGameAccountData,
+  seedLolGameAccountData,
 } = require("../utils/generate_seed_data.util");
 
 const seedingUsersAndGames = () => {
@@ -22,6 +23,7 @@ const seed = async () => {
   await db.connect();
   seedingUsersAndGames();
   seedDotaGameAccountData();
+  seedLolGameAccountData();
 };
 
 seed();

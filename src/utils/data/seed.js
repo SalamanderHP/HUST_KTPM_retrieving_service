@@ -94,8 +94,19 @@ const DOTA2_USER_DATA = [
   {ingame: "Aurora.23", ingame_id: "375507918"},
 ];
 
+const LOL_USER_DATA = [
+  {ingame: "@death", ingame_id: "583028749"},
+  {ingame: "ZodiacKnight", ingame_id: "972042043"},
+  {ingame: "RX.Mike", ingame_id: "142470499"},
+  {ingame: "SR.Riven", ingame_id: "945556144"},
+  {ingame: "ZodiacSPELLS", ingame_id: "239506171"},
+  {ingame: "Zodiac.23", ingame_id: "668161525"},
+  {ingame: "Zodiac Satanic", ingame_id: "630164718"},
+];
+
 module.exports = {
   USER_MOCK_DATA,
   GAME_MOCK_DATA,
   DOTA2_USER_DATA,
+  LOL_USER_DATA,
 };

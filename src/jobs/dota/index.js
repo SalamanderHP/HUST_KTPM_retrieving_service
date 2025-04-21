@@ -6,13 +6,16 @@ const {publishMessage} = require("../../configs/pubsub");
 const {ENTITY_CONST} = require("../../consts/entities.const");
 const {DOTA2_TOPIC_NAME} = require("../../consts/pubsub.const");
 const GameAccounts = require("../../entities/game_accounts.entity");
+const Game = require("../../entities/games.entity");
 const Match = require("../../entities/matches.entity");
+const ObjectId = require("mongodb").ObjectId;
 db.connect();
 
-const getDota2GameAccounts = async () => {
+const getDota2GameAccounts = async (game) => {
   let data = await GameAccounts.aggregate([
     {
       $match: {
+        game: new ObjectId(game?._id),
         status: ENTITY_CONST.ACCOUNT_STATUS.ACTIVE,
       },
     },
@@ -65,10 +68,16 @@ const getDota2GameAccounts = async () => {
   return data;
 };
 
+const getDota2Game = async () => {
+  let data = await Game.findOne({name: ENTITY_CONST.GAMES.NAME.DOTA2});
+  return data;
+};
+
 const job = new CronJob("*/10 * * * * *", async function () {
   console.log("DOTA2 scan start!!!");
   try {
-    let activeGameAccounts = await getDota2GameAccounts();
+    let dota2Game = await getDota2Game();
+    let activeGameAccounts = await getDota2GameAccounts(dota2Game);
     if (!activeGameAccounts) return;
 
     for (let index = 0; index < activeGameAccounts.length; index++) {
